@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { WORKDAY_LEVELS } from '../../data/curriculumData';
 import { WORKDAY_PHASES } from '../../data/phasesData';
 import { Level } from '../../types/workday';
-import { Clock, CheckCircle2, Play, ChevronRight, Lock, Award, Sparkles, Filter } from 'lucide-react';
+import { Clock, CheckCircle2, Play, ChevronRight, Lock, Award, Sparkles, Filter, Download } from 'lucide-react';
+import { PWAInstallButton } from '../pwa/PWAInstallButton';
 
 interface CurriculumExplorerProps {
   completedLevels: number[];
@@ -39,10 +40,13 @@ export const CurriculumExplorer: React.FC<CurriculumExplorerProps> = ({
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-slate-400">Total Completion:</span>
-            <div className="px-3 py-1 bg-slate-900 border border-slate-700 rounded-lg text-xs font-mono font-bold text-amber-400">
-              {completedLevels.length} / 30 Hours ({Math.round((completedLevels.length / 30) * 100)}%)
+          <div className="flex flex-wrap items-center gap-3">
+            <PWAInstallButton variant="header" />
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-slate-400">Total Completion:</span>
+              <div className="px-3 py-1 bg-slate-900 border border-slate-700 rounded-lg text-xs font-mono font-bold text-amber-400">
+                {completedLevels.length} / 30 Hours ({Math.round((completedLevels.length / 30) * 100)}%)
+              </div>
             </div>
           </div>
         </div>

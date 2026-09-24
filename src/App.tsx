@@ -11,7 +11,9 @@ import {
   CheckCircle2, 
   ShieldCheck,
   Search,
-  Users
+  Users,
+  Github,
+  Wifi
 } from 'lucide-react';
 import { WORKDAY_LEVELS } from './data/curriculumData';
 import { INITIAL_BADGES } from './data/badgesData';
@@ -23,6 +25,8 @@ import { CertificateGenerator } from './components/certificate/CertificateGenera
 import { InterviewVault } from './components/resources/InterviewVault';
 import { KapilMentorGuide } from './components/mentor/KapilMentorGuide';
 import { LevelDetailModal } from './components/curriculum/LevelDetailModal';
+import { PWAInstallButton } from './components/pwa/PWAInstallButton';
+import { OfflineIndicator } from './components/pwa/OfflineIndicator';
 import confetti from 'canvas-confetti';
 
 export default function App() {
@@ -158,11 +162,26 @@ export default function App() {
         </nav>
 
         {/* Zone 3: 1-2 primary actions */}
-        <div className="flex items-center gap-3">
-          <div className="hidden sm:flex items-center gap-2 px-3 py-1 bg-slate-800/80 rounded-lg border border-slate-700 text-xs font-mono">
+        <div className="flex items-center gap-2.5">
+          <div className="hidden lg:flex items-center gap-2 px-3 py-1 bg-slate-800/80 rounded-lg border border-slate-700 text-xs font-mono">
             <span className="text-slate-400">Progress:</span>
             <span className="text-sky-400 font-bold">{completedHours}/30 hrs</span>
           </div>
+
+          {/* GitHub Repo Link */}
+          <a
+            href="https://github.com/sarlayash/My-Workday-Learning-App-With-Kapil"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="View Source on GitHub"
+            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700 hover:border-slate-600 transition"
+          >
+            <Github className="w-3.5 h-3.5" />
+            <span>GitHub</span>
+          </a>
+
+          {/* Download / Install App PWA Button */}
+          <PWAInstallButton variant="header" />
 
           <button
             onClick={() => setActiveTab('certificate')}
@@ -284,10 +303,20 @@ export default function App() {
       {/* ============================================================== */}
       <footer className="mt-auto border-t border-slate-800 bg-slate-950 px-6 py-6 text-xs text-slate-500">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div>
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 text-center sm:text-left">
             <span>My Zero to Infinity Workday Journey with Kapil Narula</span>
-            <span className="mx-2">·</span>
-            <span>Fortune 500 Enterprise Workday Architecture Curriculum</span>
+            <span className="hidden sm:inline text-slate-700">·</span>
+            <span>Fortune 500 Enterprise Workday Architecture</span>
+            <span className="hidden sm:inline text-slate-700">·</span>
+            <a 
+              href="https://github.com/sarlayash/My-Workday-Learning-App-With-Kapil" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sky-400 hover:text-sky-300 inline-flex items-center gap-1 font-medium hover:underline"
+            >
+              <Github className="w-3.5 h-3.5" />
+              <span>GitHub Repository</span>
+            </a>
           </div>
 
           <div className="flex items-center gap-4">
@@ -307,6 +336,9 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Offline Toast Indicator */}
+      <OfflineIndicator />
     </div>
   );
 }
